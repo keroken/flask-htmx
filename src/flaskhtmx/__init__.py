@@ -27,7 +27,7 @@ def create_app():
   @app.route("/feed/<path:feed_url>")
   def render_feed(feed_url: str = None):
     for url, feed_ in feeds.items():
-      parsed_feed = feedparser.parse(feed_url)
+      parsed_feed = feedparser.parse(url)
       for entry in parsed_feed.entries:
         if entry.link not in feed_["entries"]:
           feed_["entries"][entry.link] = entry
