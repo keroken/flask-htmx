@@ -1,4 +1,4 @@
-<form class="flex flex-col items-start" action="/add_feed" method="POST">
+<form class="flex flex-col items-start" action="{{ url_for('add_feed') }}" method="POST">
   <div>
     <label for="url">URL</label>
     <input type="text" id="url" name="url" class="bg-slate-100 p-2 mb-2">
