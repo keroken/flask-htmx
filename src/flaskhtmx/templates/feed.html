@@ -7,7 +7,7 @@
       <ul role="list" class="flex flex-1 flex-col gap-y-3">
         {% for feed_url, feed_ in feeds.items() %}
         <li>
-          <a href="{{ url_for('render_feed', feed_url=feed_.href) }}"
+          <a href="{{ url_for('render_feed', feed_url=feed_.href) }}" hx-boost="true"
             class="{{ 'bg-green-700 text-white' if feed.href == feed_['href'] else '' }} rounded-md p-2 text-sm leading-6 font-semibold">
             {{ feed_['title'] }}
           </a>
@@ -19,7 +19,8 @@
 </div>
 <div class="pl-72">
   <main class="py-10">
-    {{ render_partial("partials/entry_page.html", entries=entries) }}
+    <div class="px-4 sm:px-6 lg:px-8" hx-get="{{ url_for('render_feed_entries', feed_url=feed.href, page=0) }}"
+      hx-target="this" hx-swap="afterbegin" hx-trigger="load"></div>
   </main>
 </div>
 {% endblock content %}
