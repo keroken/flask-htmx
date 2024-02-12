@@ -9,8 +9,10 @@
         <li>
           <a href="{{ url_for('render_feed', feed_url=feed_.href) }}"
             hx-boost="true"
+            x-data
             class="{{ 'bg-green-700 text-white' if feed.href == feed_['href'] else '' }} rounded-md p-2 text-sm leading-6 font-semibold">
             {{ feed_['title'] }}
+            <span @read.window="{{ '$el.innerHTML -= $event.detail.read ? 0 : 1' if feed.href == feed_['href'] else '' }}">{{ feed_["entries"].values() | rejectattr("read") | list | length }}</span>
           </a>
         </li>
         {% endfor %}
